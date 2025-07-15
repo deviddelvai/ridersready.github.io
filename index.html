@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RidersReady</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Translation data
+        const translations = {
+            en: {
+                title: "RidersReady",
+                subtitle: "Your hub for everything cycling!",
+                description: "Discover events, connect with riders, and stay up to date with the latest cycling news.",
+                upcoming: "Upcoming Events",
+                events: [
+                    "Mountain Bike Marathon - August 10, 2025",
+                    "Road Race Challenge - September 5, 2025",
+                    "Cyclocross Cup - October 18, 2025"
+                ],
+                nav: ["Home", "Events", "Riders", "About"],
+                copyright: "&copy; 2025 RidersReady. All rights reserved."
+            },
+            it: {
+                title: "RidersReady",
+                subtitle: "Il tuo punto di riferimento per il ciclismo!",
+                description: "Scopri gli eventi, connettiti con altri ciclisti e resta aggiornato sulle ultime novità.",
+                upcoming: "Eventi in programma",
+                events: [
+                    "Maratona Mountain Bike - 10 Agosto 2025",
+                    "Sfida su Strada - 5 Settembre 2025",
+                    "Coppa Ciclocross - 18 Ottobre 2025"
+                ],
+                nav: ["Home", "Eventi", "Ciclisti", "Chi siamo"],
+                copyright: "&copy; 2025 RidersReady. Tutti i diritti riservati."
+            },
+            de: {
+                title: "RidersReady",
+                subtitle: "Ihr Treffpunkt für alles rund ums Radfahren!",
+                description: "Entdecke Events, vernetze dich mit Fahrern und bleibe über die neuesten Nachrichten informiert.",
+                upcoming: "Bevorstehende Veranstaltungen",
+                events: [
+                    "Mountainbike-Marathon – 10. August 2025",
+                    "Straßenrennen-Challenge – 5. September 2025",
+                    "Cyclocross-Cup – 18. Oktober 2025"
+                ],
+                nav: ["Startseite", "Veranstaltungen", "Fahrer", "Über uns"],
+                copyright: "&copy; 2025 RidersReady. Alle Rechte vorbehalten."
+            }
+        };
+
+        function setLanguage(lang) {
+            const t = translations[lang] || translations.en;
+            document.getElementById("page-title").textContent = t.title;
+            document.getElementById("nav-home").textContent = t.nav[0];
+            document.getElementById("nav-events").textContent = t.nav[1];
+            document.getElementById("nav-riders").textContent = t.nav[2];
+            document.getElementById("nav-about").textContent = t.nav[3];
+            document.getElementById("subtitle").textContent = t.subtitle;
+            document.getElementById("description").textContent = t.description;
+            document.getElementById("upcoming").textContent = t.upcoming;
+            const eventsList = document.getElementById("events-list");
+            eventsList.innerHTML = "";
+            t.events.forEach(ev => {
+                const li = document.createElement("li");
+                li.textContent = ev;
+                eventsList.appendChild(li);
+            });
+            document.getElementById("copyright").innerHTML = t.copyright;
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setLanguage("en");
+            document.querySelectorAll(".lang-btn").forEach(btn => {
+                btn.addEventListener("click", function() {
+                    setLanguage(this.dataset.lang);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-image-container">
+            <img src="header.jpg" alt="Header RidersReady" class="header-image"/>
+        </div>
+        <div class="logo-container">
+            <img src="logo.png" alt="RidersReady Logo" class="logo"/>
+        </div>
+        <h1 id="page-title">RidersReady</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="nav-home">Home</a></li>
+                <li><a href="#" id="nav-events">Events</a></li>
+                <li><a href="#" id="nav-riders">Riders</a></li>
+                <li><a href="#" id="nav-about">About</a></li>
+            </ul>
+        </nav>
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="it">IT</button>
+            <button class="lang-btn" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+    </header>
+    <main>
+        <section>
+            <h2 id="subtitle">Your hub for everything cycling!</h2>
+            <p id="description">
+                Discover events, connect with riders, and stay up to date with the latest cycling news.
+            </p>
+        </section>
+        <section>
+            <h3 id="upcoming">Upcoming Events</h3>
+            <ul id="events-list">
+                <li>Mountain Bike Marathon - August 10, 2025</li>
+                <li>Road Race Challenge - September 5, 2025</li>
+                <li>Cyclocross Cup - October 18, 2025</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p id="copyright">&copy; 2025 RidersReady. All rights reserved.</p>
+    </footer>
+</body>
+</html>
